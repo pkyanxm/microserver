@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pktech.demo.dao.UserDao">
+    
+    <sql id="userColumns">
+		a.id AS "id",
+		a.username AS "username",
+		a.name AS "name",
+		a.password AS "password",
+		a.phone AS "phone"
+	</sql>
+	
+	<sql id="userJoins">
+		
+    </sql>
+    
+    <select id="findUserByPhone" parameterType="java.lang.String" resultType="com.pktech.demo.entity.User" >
+        select
+        	<include refid="userColumns"/>
+        from user a
+       	 	<include refid="userJoins"/>
+        where phone=#{phone}
+    </select>
+    
+    <insert id="save">
+    	insert into user
+    	(
+	    	id,
+			username,
+			name,
+			password,
+			phone
+    	) value (
+    		#{id},
+    		#{username},
+    		#{name},
+    		#{password},
+    		#{phone}
+    	)
+    </insert>    
+</mapper>
