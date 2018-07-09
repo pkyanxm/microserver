@@ -25,7 +25,7 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public Map<String, Object> login(@RequestParam String phone, @RequestParam String password){
 		Map<String, Object> map  = new HashMap<String, Object>();
-		try {
+//		try {
 			User user = userService.findUserByPhone(phone);
 			if(user != null ){
 				if(!password.equals(user.getPassword())){
@@ -39,10 +39,10 @@ public class UserController {
 				map.put("code", "0003");
 				map.put("msg", "找不到该用户");
 			}
-		} catch (Exception e) {
-			map.put("code", "0004");
-			map.put("msg", "登录失败，请重新登陆");
-		}		
+//		} catch (Exception e) {
+//			map.put("code", "0004");
+//			map.put("msg", "登录失败，请重新登陆");
+//		}		
 		return map;
 	}
 	
@@ -50,7 +50,7 @@ public class UserController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public Map<String, Object> register(@RequestBody User user){
 		Map<String, Object> map  = new HashMap<String, Object>();
-		try {
+//		try {
 			user.setId(UUID.randomUUID().toString());
 			User u = userService.findUserByPhone(user.getPhone());
 			if(u != null){
@@ -61,10 +61,10 @@ public class UserController {
 				map.put("code", "0000");
 				map.put("msg", "注册成功");
 			}
-		} catch (Exception e) {
-			map.put("code", "0002");
-			map.put("msg", "注册失败，请重新注册");
-		}
+//		} catch (Exception e) {
+//			map.put("code", "0002");
+//			map.put("msg", "注册失败，请重新注册");
+//		}
 		return map;
 	}
 }
