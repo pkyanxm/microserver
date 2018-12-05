@@ -6,9 +6,10 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,13 +17,14 @@ import com.pktech.demo.entity.User;
 import com.pktech.demo.service.UserService;
 
 @RestController
+@RequestMapping("/sys/user")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
 	@CrossOrigin
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@GetMapping("/login")
 	public Map<String, Object> login(@RequestParam String phone, @RequestParam String password){
 		Map<String, Object> map  = new HashMap<String, Object>();
 //		try {
@@ -47,7 +49,7 @@ public class UserController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value="/register", method=RequestMethod.POST)
+	@PostMapping("/register")
 	public Map<String, Object> register(@RequestBody User user){
 		Map<String, Object> map  = new HashMap<String, Object>();
 //		try {

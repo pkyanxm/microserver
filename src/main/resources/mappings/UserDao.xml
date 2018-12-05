@@ -17,13 +17,13 @@
     <select id="findUserByPhone" parameterType="java.lang.String" resultType="com.pktech.demo.entity.User" >
         select
         	<include refid="userColumns"/>
-        from t_user a
+        from user a
        	 	<include refid="userJoins"/>
         where phone=#{phone}
     </select>
     
     <insert id="save">
-    	insert into t_user
+    	insert into user
     	(
 	    	id,
 			username,
